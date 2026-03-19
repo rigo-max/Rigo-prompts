@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DesArt Academy — Guía de Prompts IA</title>
+<title>Rigo Fotograf.iA — Guía de Prompts IA</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -17,9 +17,7 @@
     --accent: #2a2a38;
     --success: #4ade80;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
     background: var(--bg);
     color: var(--text);
@@ -28,25 +26,11 @@
     line-height: 1.75;
     min-height: 100vh;
   }
-
-  /* Grain overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 1000;
-    opacity: 0.4;
-  }
-
   header {
     text-align: center;
     padding: 64px 24px 48px;
-    position: relative;
     border-bottom: 1px solid var(--border);
   }
-
   .logo-line {
     font-family: 'Cormorant Garamond', serif;
     font-size: 11px;
@@ -56,22 +40,15 @@
     color: var(--gold);
     margin-bottom: 20px;
   }
-
   h1 {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(32px, 5vw, 58px);
     font-weight: 300;
-    letter-spacing: -0.5px;
     color: #f0ece4;
     line-height: 1.1;
     margin-bottom: 16px;
   }
-
-  h1 span {
-    color: var(--gold);
-    font-style: italic;
-  }
-
+  h1 span { color: var(--gold); font-style: italic; }
   .subtitle {
     color: var(--muted);
     font-size: 12px;
@@ -79,14 +56,11 @@
     max-width: 520px;
     margin: 0 auto;
   }
-
-  /* Notes section */
   .notes {
     max-width: 860px;
     margin: 40px auto;
     padding: 0 24px;
   }
-
   .notes-box {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -94,7 +68,6 @@
     padding: 20px 24px;
     border-radius: 4px;
   }
-
   .notes-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 13px;
@@ -104,66 +77,54 @@
     color: var(--gold);
     margin-bottom: 12px;
   }
-
-  .notes-box ul {
-    list-style: none;
+  .notes-box ul { list-style: none; color: var(--muted); }
+  .notes-box li { padding: 4px 0 4px 16px; position: relative; }
+  .notes-box li::before { content: '—'; position: absolute; left: 0; color: var(--gold); opacity: 0.5; }
+  .section-divider {
+    max-width: 860px;
+    margin: 0 auto 32px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
     color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
   }
-
-  .notes-box li {
-    padding: 4px 0;
-    padding-left: 16px;
-    position: relative;
+  .section-divider::before, .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
   }
-
-  .notes-box li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--gold);
-    opacity: 0.5;
-  }
-
-  /* Main grid */
   .grid {
     max-width: 860px;
     margin: 0 auto;
     padding: 0 24px 80px;
     display: grid;
-    grid-template-columns: 1fr;
     gap: 20px;
   }
-
   .card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 6px;
     overflow: hidden;
-    transition: border-color 0.3s ease;
-    position: relative;
   }
-
-  .card:hover {
-    border-color: #2e2e3e;
-  }
-
   .card-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 16px 20px;
     border-bottom: 1px solid var(--border);
-    background: rgba(201, 168, 76, 0.04);
+    background: rgba(201,168,76,0.04);
   }
-
   .prompt-label {
     font-family: 'Cormorant Garamond', serif;
     font-size: 18px;
     font-weight: 600;
     color: var(--gold-light);
-    letter-spacing: 0.5px;
   }
-
   .prompt-tag {
     font-size: 10px;
     letter-spacing: 2px;
@@ -173,40 +134,26 @@
     padding: 3px 10px;
     border-radius: 2px;
   }
-
   .prompt-text {
     padding: 20px;
     color: #b8b4ae;
     font-size: 12px;
     line-height: 1.8;
-    letter-spacing: 0.2px;
-    max-height: 120px;
+    max-height: 100px;
     overflow: hidden;
     position: relative;
-    cursor: pointer;
-    transition: max-height 0.5s ease;
+    transition: max-height 0.4s ease;
   }
-
-  .prompt-text.expanded {
-    max-height: 600px;
-  }
-
+  .prompt-text.expanded { max-height: 1000px; }
   .prompt-text::after {
     content: '';
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 0; left: 0; right: 0;
     height: 40px;
     background: linear-gradient(transparent, var(--surface));
     pointer-events: none;
-    transition: opacity 0.3s;
   }
-
-  .prompt-text.expanded::after {
-    opacity: 0;
-  }
-
+  .prompt-text.expanded::after { opacity: 0; }
   .card-footer {
     display: flex;
     align-items: center;
@@ -215,7 +162,6 @@
     border-top: 1px solid var(--border);
     gap: 12px;
   }
-
   .toggle-btn {
     background: none;
     border: none;
@@ -225,12 +171,8 @@
     cursor: pointer;
     letter-spacing: 1px;
     text-transform: uppercase;
-    padding: 0;
-    transition: color 0.2s;
   }
-
   .toggle-btn:hover { color: var(--text); }
-
   .copy-btn {
     display: flex;
     align-items: center;
@@ -248,47 +190,15 @@
     transition: all 0.2s ease;
     white-space: nowrap;
   }
-
   .copy-btn:hover {
-    background: rgba(201, 168, 76, 0.12);
+    background: rgba(201,168,76,0.12);
     border-color: var(--gold);
-    color: var(--gold-light);
   }
-
   .copy-btn.copied {
-    background: rgba(74, 222, 128, 0.1);
+    background: rgba(74,222,128,0.1);
     border-color: var(--success);
     color: var(--success);
   }
-
-  .copy-btn svg {
-    width: 13px;
-    height: 13px;
-    flex-shrink: 0;
-  }
-
-  /* Divider line decorative */
-  .section-divider {
-    max-width: 860px;
-    margin: 0 auto 32px;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    color: var(--muted);
-    font-size: 10px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
-
-  .section-divider::before,
-  .section-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
   footer {
     text-align: center;
     padding: 32px 24px;
@@ -297,42 +207,18 @@
     font-size: 11px;
     letter-spacing: 1px;
   }
-
-  footer a {
-    color: var(--gold);
-    text-decoration: none;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .card {
-    animation: fadeIn 0.4s ease both;
-  }
-
-  .card:nth-child(1) { animation-delay: 0.05s; }
-  .card:nth-child(2) { animation-delay: 0.10s; }
-  .card:nth-child(3) { animation-delay: 0.15s; }
-  .card:nth-child(4) { animation-delay: 0.20s; }
-  .card:nth-child(5) { animation-delay: 0.25s; }
-  .card:nth-child(6) { animation-delay: 0.30s; }
-  .card:nth-child(7) { animation-delay: 0.35s; }
-  .card:nth-child(8) { animation-delay: 0.40s; }
-  .card:nth-child(9) { animation-delay: 0.45s; }
-  .card:nth-child(10) { animation-delay: 0.50s; }
+  footer a { color: var(--gold); text-decoration: none; }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo-line">DesArt Academy</div>
+  <div class="logo-line">Rigo Fotograf.iA</div>
   <h1>Prompts para Fotos<br><span>Profesionales con IA</span></h1>
   <p class="subtitle">10 prompts listos para usar — Retratos ejecutivos de alta calidad con Gemini, Flow o Nano Banana 2</p>
 </header>
 
-<div class="notes" style="margin-top:40px;">
+<div class="notes">
   <div class="notes-box">
     <div class="notes-title">⚑ Antes de usar</div>
     <ul>
@@ -345,124 +231,80 @@
 </div>
 
 <div class="section-divider">10 prompts</div>
-
-<div class="grid" id="promptGrid"></div>
+<div class="grid" id="grid"></div>
 
 <footer>
-  <p>DesArt Academy · <a href="https://www.skool.com/desartacademy/about" target="_blank">skool.com/desartacademy</a></p>
+  <p>Rigo Fotograf.iA · <a href="https://rigo-max.github.io/desart-prompts" target="_blank">rigo-max.github.io</a></p>
 </footer>
 
 <script>
-const prompts = [
-  {
-    label: "Prompt 01",
-    tag: "Full Body · Studio",
-    text: `Hyper-realistic professional full-body photography of the man from the reference. Environment: TOTAL BACKGROUND REPLACEMENT. Use a solid, deep charcoal black professional studio wall with subtle texture. Pose: Standing in a powerful three-quarter posture; weight shifted to his back leg. Hand Interaction: Right hand's thumb and index finger are precisely touching and adjusting the silver crown of a luxury watch on his left wrist; anatomically perfect fingers with realistic skin texture. Attire: Bespoke navy blue wool suit with visible fabric weave; crisp white shirt with a stiff collar; dark tie. Lighting: High-end Three-point lighting; large softbox for 100% facial illumination; a strong rim light (kicker) on the shoulders and hair to separate the subject from the black background; white reflectors for fill. Technical: Shot on Hasselblad H6D, 80mm, f/8; sharp focus, visible skin pores, no AI smoothing, 8k. NO DARK FACE, NO CGI, SOLID DARK BACKGROUND.`
-  },
-  {
-    label: "Prompt 02",
-    tag: "Executive Office · Seated",
-    text: `High-end professional portrait of the man from the reference. Environment: REPLACE background with a luxury executive office; dark wood bookshelves with integrated LED lighting and a marble desk in the foreground. Pose: Seated behind a sleek black laptop (no logo); one hand resting on the chin in a contemplative posture; the other hand on the desk. Hand Interaction: Realistic skin compression on the chin; index finger extended along the jawline; a luxury silver watch with a green dial visible on the wrist. Attire: A dark pinstripe tailored suit over a white shirt. Lighting: Three-point studio lighting; soft key light at 45 degrees; warm rim light from the background LED shelves; zero facial shadows. Technical: Fujifilm GFX 100S, 80mm, f/5.6; 8k resolution, photorealistic skin and fabric textures. NO SMILE, NO CGI.`
-  },
-  {
-    label: "Prompt 03",
-    tag: "Street · Financial District",
-    text: `High-end commercial street photography of the man. Environment: FULL BACKGROUND REPLACEMENT. Modern financial district architecture at dusk; dark glass towers with warm golden interior office lights in extreme creamy bokeh. Pose: Standing confidently, shoulders squared, head turned slightly towards the camera with a calm, sharp and professional look. Hand Interaction: Arms crossed naturally; fingers of the top hand resting on the bicep with realistic skin tension and visible fabric texture of the sleeve. Attire: A modern slim-fit structured blazer in textured charcoal tech-wool; a crisp white shirt with an Italian spread collar, top button unbuttoned for a high-end modern executive look. Lighting: Professional Strobe-Ambient mix; High-Speed Sync (HSS) off-camera flash with a silver beauty dish to create a sharp, high-end commercial "pop" on the face; cold blue city ambient light mixed with warm key light; zero harsh shadows; perfectly balanced exposure. Technical: Sony A7R V, 135mm f/1.8 G-Master; extreme background separation, realistic skin textures, 8k. STRICTLY PHOTOGRAPHIC, NEUTRAL EXPRESSION, NO ANTIQUATED CLOTHING.`
-  },
-  {
-    label: "Prompt 04",
-    tag: "Full Body · Minimalist",
-    text: `Hyper-realistic professional full-body photography of the man from the reference. Environment: COMPLETELY REPLACE the background with a high-end minimalist professional studio setting; solid dark charcoal grey wall with a subtle center spot light gradient. Pose: Standing in a powerful three-quarter posture; weight shifted to his back leg, right hand adjusting a silver watch, left hand in the trouser pocket. Attire: Bespoke navy blue wool suit with visible weave; crisp white shirt; burgundy silk tie. Lighting: Professional Rembrandt setup; Octabox as key light at 45 degrees; sharp separation between subject and background. Technical: Shot on Hasselblad H6D, 80mm, f/5.6; sharp focus on eyes, visible skin pores, raw photo style, 8k. NO ORIGINAL BACKGROUND, NO CGI, NO 3D RENDER.`
-  },
-  {
-    label: "Prompt 05",
-    tag: "Boardroom · Night",
-    text: `Authentic professional portrait of the man from the reference. Environment: DISCARD original background. New environment: A luxury boardroom at night with dark wood and subtle blue ambient lights in deep bokeh. Pose: Seated on a minimalist stool, body angled 45 degrees, face looking directly into the lens with a neutral and determined expression. Hand Interaction: Hands resting naturally on thighs; visible knuckle detail; palms touching the fabric of the dark trousers. Attire: A tailored navy blue blazer in premium wool-silk blend; a crisp white Egyptian cotton dress shirt with the top button open (no tie). Lighting: High-key commercial setup on the face; perfectly even light distribution; zero shadows on the face; sharp eye catchlights. Technical: Fujifilm GFX 100S, 63mm; authentic photographic grain, ultra-sharp details. BALANCED FACIAL LIGHTING ONLY, NO SMILE.`
-  },
-  {
-    label: "Prompt 06",
-    tag: "Skyline · Window Light",
-    text: `Hyper-realistic professional photography of the man from the reference. Environment: TOTAL BACKGROUND REPLACEMENT. High-rise executive boardroom with a massive floor-to-ceiling window overlooking a daylight city skyline in soft bokeh. Pose: Standing and leaning slightly against the back of a tan/cognac leather chair. Left hand is resting firmly on the top of the chair back; right hand is tucked into the suit pocket. Attire: A classic tailored dark charcoal business suit; crisp white dress shirt; dark purple silk tie with a subtle micro-pattern (dots). Lighting: Natural daylight from the side window balanced with professional commercial studio fill; zero harsh shadows; clean, bright facial exposure; sharp catchlights in the eyes. Technical: Nikon Z9, 50mm, f/5.6; realistic fabric weight, photorealistic skin micro-pores, 8k. SERIOUS EXPRESSION, NO SMILE, NO CGI.`
-  },
-  {
-    label: "Prompt 07",
-    tag: "Office Facade · Plaid Blazer",
-    text: `Hyper-realistic professional photography of the man from the reference. Environment: COMPLETE BACKGROUND REPLACEMENT. High-end modern office building background with a grid-like stone and glass facade in extreme bokeh. Pose: Leaning forward with both forearms resting on the back of a premium cream-colored executive chair with perforated leather texture. Hand Interaction: Hands are clasped together in front; fingers are realistically interlocked with clear knuckle definition and natural skin-on-skin contact. Accessories: A luxury watch with a brown leather strap and silver dial visible on the left wrist. Attire: A modern blazer with a navy and deep purple checkered (plaid) pattern; worn over a light blue micro-patterned dress shirt with an open collar (no tie). Lighting: Soft wrap-around commercial lighting; massive diffusion panel to the side for even facial illumination; no shadows; bright catchlights. Technical: Phase One IQ4, 80mm, f/5.6; visible fabric fibers and leather pores, 8k. NO SMILE, NO CGI.`
-  },
-  {
-    label: "Prompt 08",
-    tag: "Profile · Visionary",
-    text: `Hyper-realistic professional photography of the man from the reference. Environment: COMPLETE BACKGROUND REPLACEMENT with a solid, neutral light-grey studio wall; clean and minimalist. Pose: Profile view; body angled 45 degrees away from the camera. Gaze: Head turned slightly, looking upwards and into the distance (off-camera) with a thoughtful, visionary expression. Hand Interaction: Right arm bent, with the left hand precisely adjusting the cuff of the right sleeve; visible skin-to-fabric contact, anatomically correct fingers with realistic knuckle and nail detail. Attire: Bespoke charcoal tailored suit with visible fabric weave; crisp white shirt with the cuff extending slightly. Accessories: Minimalist black-rimmed glasses with realistic lens reflections. Lighting: Professional soft-box studio lighting; balanced high-key illumination; zero harsh shadows on the face; clear catchlights. Technical: Phase One IQ4, 80mm, f/8; extreme sharpness, visible skin pores, natural skin texture, 8k. NO SMILE, NO CGI.`
-  },
-  {
-    label: "Prompt 09",
-    tag: "Studio · Charcoal · Plaid",
-    text: `Hyper-realistic professional photography of the man from the reference. Environment: TOTAL BACKGROUND REPLACEMENT. Solid dark charcoal studio background with a very subtle center-light vignette. Pose: Standing three-quarter view; body angled 45 degrees. Hand Interaction: Hands are clasped together at the waist level; fingers interlocked with precise anatomical detail; visible skin texture on the knuckles. Accessories: A luxury watch with a deep blue leather strap and a blue sunray dial visible on the wrist. Attire: A high-end navy blue and dark purple checkered (plaid) blazer with visible wool texture; a crisp white shirt; a solid copper/bronze silk tie. Lighting: Professional Three-point studio lighting; soft key light for even facial coverage; silver reflector for shadow fill; rim light on shoulders for separation. Technical: Hasselblad H6D, 80mm, f/8; extreme sharpness on fabric weave and iris, 8k resolution. NEUTRAL EXPRESSION, NO SMILE, NO CGI.`
-  },
-  {
-    label: "Prompt 10",
-    tag: "Editorial · Magazine",
-    text: `Editorial business portrait for a luxury magazine. Environment: NEW dark luxury office background with black marble and dark oak textures; blurred city lights through a window. Pose: Leaning slightly against a desk; hands clasped together with realistic interlocking fingers. Expression: Focused and intellectual gaze, lips closed, neutral and authoritative expression. Attire: Dark navy suit jacket with silk lapels; white tailored shirt. Lighting: Clamshell lighting setup to provide a luminous, shadow-free skin tone; a dedicated rim light to define the silhouette against the dark office. Technical: Canon EOS R3, 50mm f/1.2; sharp focus on the iris, 8k, RAW file look. IGNORE ORIGINAL ROOM, NO SMILE.`
-  }
+var prompts = [
+  { label: "Prompt 01", tag: "Full Body · Studio", text: "Hyper-realistic professional full-body photography of the man from the reference. Environment: TOTAL BACKGROUND REPLACEMENT. Use a solid, deep charcoal black professional studio wall with subtle texture. Pose: Standing in a powerful three-quarter posture; weight shifted to his back leg. Hand Interaction: Right hand's thumb and index finger are precisely touching and adjusting the silver crown of a luxury watch on his left wrist; anatomically perfect fingers with realistic skin texture. Attire: Bespoke navy blue wool suit with visible fabric weave; crisp white shirt with a stiff collar; dark tie. Lighting: High-end Three-point lighting; large softbox for 100% facial illumination; a strong rim light (kicker) on the shoulders and hair to separate the subject from the black background; white reflectors for fill. Technical: Shot on Hasselblad H6D, 80mm, f/8; sharp focus, visible skin pores, no AI smoothing, 8k. NO DARK FACE, NO CGI, SOLID DARK BACKGROUND." },
+  { label: "Prompt 02", tag: "Executive Office · Seated", text: "High-end professional portrait of the man from the reference. Environment: REPLACE background with a luxury executive office; dark wood bookshelves with integrated LED lighting and a marble desk in the foreground. Pose: Seated behind a sleek black laptop (no logo); one hand resting on the chin in a contemplative posture; the other hand on the desk. Hand Interaction: Realistic skin compression on the chin; index finger extended along the jawline; a luxury silver watch with a green dial visible on the wrist. Attire: A dark pinstripe tailored suit over a white shirt. Lighting: Three-point studio lighting; soft key light at 45 degrees; warm rim light from the background LED shelves; zero facial shadows. Technical: Fujifilm GFX 100S, 80mm, f/5.6; 8k resolution, photorealistic skin and fabric textures. NO SMILE, NO CGI." },
+  { label: "Prompt 03", tag: "Street · Financial District", text: "High-end commercial street photography of the man. Environment: FULL BACKGROUND REPLACEMENT. Modern financial district architecture at dusk; dark glass towers with warm golden interior office lights in extreme creamy bokeh. Pose: Standing confidently, shoulders squared, head turned slightly towards the camera with a calm, sharp and professional look. Hand Interaction: Arms crossed naturally; fingers of the top hand resting on the bicep with realistic skin tension and visible fabric texture of the sleeve. Attire: A modern slim-fit structured blazer in textured charcoal tech-wool; a crisp white shirt with an Italian spread collar, top button unbuttoned for a high-end modern executive look. Lighting: Professional Strobe-Ambient mix; High-Speed Sync (HSS) off-camera flash with a silver beauty dish to create a sharp, high-end commercial pop on the face; cold blue city ambient light mixed with warm key light; zero harsh shadows; perfectly balanced exposure. Technical: Sony A7R V, 135mm f/1.8 G-Master; extreme background separation, realistic skin textures, 8k. STRICTLY PHOTOGRAPHIC, NEUTRAL EXPRESSION, NO ANTIQUATED CLOTHING." },
+  { label: "Prompt 04", tag: "Full Body · Minimalist", text: "Hyper-realistic professional full-body photography of the man from the reference. Environment: COMPLETELY REPLACE the background with a high-end minimalist professional studio setting; solid dark charcoal grey wall with a subtle center spot light gradient. Pose: Standing in a powerful three-quarter posture; weight shifted to his back leg, right hand adjusting a silver watch, left hand in the trouser pocket. Attire: Bespoke navy blue wool suit with visible weave; crisp white shirt; burgundy silk tie. Lighting: Professional Rembrandt setup; Octabox as key light at 45 degrees; sharp separation between subject and background. Technical: Shot on Hasselblad H6D, 80mm, f/5.6; sharp focus on eyes, visible skin pores, raw photo style, 8k. NO ORIGINAL BACKGROUND, NO CGI, NO 3D RENDER." },
+  { label: "Prompt 05", tag: "Boardroom · Night", text: "Authentic professional portrait of the man from the reference. Environment: DISCARD original background. New environment: A luxury boardroom at night with dark wood and subtle blue ambient lights in deep bokeh. Pose: Seated on a minimalist stool, body angled 45 degrees, face looking directly into the lens with a neutral and determined expression. Hand Interaction: Hands resting naturally on thighs; visible knuckle detail; palms touching the fabric of the dark trousers. Attire: A tailored navy blue blazer in premium wool-silk blend; a crisp white Egyptian cotton dress shirt with the top button open (no tie). Lighting: High-key commercial setup on the face; perfectly even light distribution; zero shadows on the face; sharp eye catchlights. Technical: Fujifilm GFX 100S, 63mm; authentic photographic grain, ultra-sharp details. BALANCED FACIAL LIGHTING ONLY, NO SMILE." },
+  { label: "Prompt 06", tag: "Skyline · Window Light", text: "Hyper-realistic professional photography of the man from the reference. Environment: TOTAL BACKGROUND REPLACEMENT. High-rise executive boardroom with a massive floor-to-ceiling window overlooking a daylight city skyline in soft bokeh. Pose: Standing and leaning slightly against the back of a tan/cognac leather chair. Left hand is resting firmly on the top of the chair back; right hand is tucked into the suit pocket. Attire: A classic tailored dark charcoal business suit; crisp white dress shirt; dark purple silk tie with a subtle micro-pattern (dots). Lighting: Natural daylight from the side window balanced with professional commercial studio fill; zero harsh shadows; clean, bright facial exposure; sharp catchlights in the eyes. Technical: Nikon Z9, 50mm, f/5.6; realistic fabric weight, photorealistic skin micro-pores, 8k. SERIOUS EXPRESSION, NO SMILE, NO CGI." },
+  { label: "Prompt 07", tag: "Office Facade · Plaid Blazer", text: "Hyper-realistic professional photography of the man from the reference. Environment: COMPLETE BACKGROUND REPLACEMENT. High-end modern office building background with a grid-like stone and glass facade in extreme bokeh. Pose: Leaning forward with both forearms resting on the back of a premium cream-colored executive chair with perforated leather texture. Hand Interaction: Hands are clasped together in front; fingers are realistically interlocked with clear knuckle definition and natural skin-on-skin contact. Accessories: A luxury watch with a brown leather strap and silver dial visible on the left wrist. Attire: A modern blazer with a navy and deep purple checkered (plaid) pattern; worn over a light blue micro-patterned dress shirt with an open collar (no tie). Lighting: Soft wrap-around commercial lighting; massive diffusion panel to the side for even facial illumination; no shadows; bright catchlights. Technical: Phase One IQ4, 80mm, f/5.6; visible fabric fibers and leather pores, 8k. NO SMILE, NO CGI." },
+  { label: "Prompt 08", tag: "Profile · Visionary", text: "Hyper-realistic professional photography of the man from the reference. Environment: COMPLETE BACKGROUND REPLACEMENT with a solid, neutral light-grey studio wall; clean and minimalist. Pose: Profile view; body angled 45 degrees away from the camera. Gaze: Head turned slightly, looking upwards and into the distance (off-camera) with a thoughtful, visionary expression. Hand Interaction: Right arm bent, with the left hand precisely adjusting the cuff of the right sleeve; visible skin-to-fabric contact, anatomically correct fingers with realistic knuckle and nail detail. Attire: Bespoke charcoal tailored suit with visible fabric weave; crisp white shirt with the cuff extending slightly. Accessories: Minimalist black-rimmed glasses with realistic lens reflections. Lighting: Professional soft-box studio lighting; balanced high-key illumination; zero harsh shadows on the face; clear catchlights. Technical: Phase One IQ4, 80mm, f/8; extreme sharpness, visible skin pores, natural skin texture, 8k. NO SMILE, NO CGI." },
+  { label: "Prompt 09", tag: "Studio · Charcoal · Plaid", text: "Hyper-realistic professional photography of the man from the reference. Environment: TOTAL BACKGROUND REPLACEMENT. Solid dark charcoal studio background with a very subtle center-light vignette. Pose: Standing three-quarter view; body angled 45 degrees. Hand Interaction: Hands are clasped together at the waist level; fingers interlocked with precise anatomical detail; visible skin texture on the knuckles. Accessories: A luxury watch with a deep blue leather strap and a blue sunray dial visible on the wrist. Attire: A high-end navy blue and dark purple checkered (plaid) blazer with visible wool texture; a crisp white shirt; a solid copper/bronze silk tie. Lighting: Professional Three-point studio lighting; soft key light for even facial coverage; silver reflector for shadow fill; rim light on shoulders for separation. Technical: Hasselblad H6D, 80mm, f/8; extreme sharpness on fabric weave and iris, 8k resolution. NEUTRAL EXPRESSION, NO SMILE, NO CGI." },
+  { label: "Prompt 10", tag: "Editorial · Magazine", text: "Editorial business portrait for a luxury magazine. Environment: NEW dark luxury office background with black marble and dark oak textures; blurred city lights through a window. Pose: Leaning slightly against a desk; hands clasped together with realistic interlocking fingers. Expression: Focused and intellectual gaze, lips closed, neutral and authoritative expression. Attire: Dark navy suit jacket with silk lapels; white tailored shirt. Lighting: Clamshell lighting setup to provide a luminous, shadow-free skin tone; a dedicated rim light to define the silhouette against the dark office. Technical: Canon EOS R3, 50mm f/1.2; sharp focus on the iris, 8k, RAW file look. IGNORE ORIGINAL ROOM, NO SMILE." }
 ];
 
-const grid = document.getElementById('promptGrid');
+var grid = document.getElementById('grid');
 
-prompts.forEach((p, i) => {
-  const card = document.createElement('div');
-  card.className = 'card';
+for (var i = 0; i < prompts.length; i++) {
+  (function(idx) {
+    var p = prompts[idx];
+    var card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML =
+      '<div class="card-header">' +
+        '<span class="prompt-label">' + p.label + '</span>' +
+        '<span class="prompt-tag">' + p.tag + '</span>' +
+      '</div>' +
+      '<div class="prompt-text" id="pt-' + idx + '">' + p.text + '</div>' +
+      '<div class="card-footer">' +
+        '<button class="toggle-btn" id="tb-' + idx + '">Ver completo ↓</button>' +
+        '<button class="copy-btn" id="cb-' + idx + '">📋 Copiar prompt</button>' +
+      '</div>';
+    grid.appendChild(card);
 
-  card.innerHTML = `
-    <div class="card-header">
-      <span class="prompt-label">${p.label}</span>
-      <span class="prompt-tag">${p.tag}</span>
-    </div>
-    <div class="prompt-text" id="text-${i}">${p.text}</div>
-    <div class="card-footer">
-      <button class="toggle-btn" onclick="toggleExpand(${i})">Ver completo ↓</button>
-      <button class="copy-btn" id="btn-${i}" onclick="copyPrompt(${i})">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-        </svg>
-        Copiar prompt
-      </button>
-    </div>
-  `;
+    document.getElementById('tb-' + idx).addEventListener('click', function() {
+      var el = document.getElementById('pt-' + idx);
+      var expanded = el.classList.toggle('expanded');
+      this.textContent = expanded ? 'Contraer ↑' : 'Ver completo ↓';
+    });
 
-  grid.appendChild(card);
-});
-
-function toggleExpand(i) {
-  const el = document.getElementById(`text-${i}`);
-  const btn = el.nextElementSibling.querySelector('.toggle-btn');
-  const expanded = el.classList.toggle('expanded');
-  btn.textContent = expanded ? 'Contraer ↑' : 'Ver completo ↓';
-}
-
-function copyPrompt(i) {
-  const text = prompts[i].text;
-  const btn = document.getElementById(`btn-${i}`);
-
-  navigator.clipboard.writeText(text).then(() => {
-    btn.classList.add('copied');
-    btn.innerHTML = `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-        <polyline points="20 6 9 17 4 12"/>
-      </svg>
-      ¡Copiado!
-    `;
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      btn.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2 2v1"/>
-        </svg>
-        Copiar prompt
-      `;
-    }, 2000);
-  });
+    document.getElementById('cb-' + idx).addEventListener('click', function() {
+      var btn = this;
+      var text = p.text;
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:absolute;left:-9999px;top:0;';
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, 99999);
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (ok || navigator.clipboard) {
+          if (navigator.clipboard && window.isSecureContext) {
+            navigator.clipboard.writeText(text).catch(function(){});
+          }
+          btn.classList.add('copied');
+          btn.textContent = '✅ ¡Copiado!';
+          setTimeout(function() {
+            btn.classList.remove('copied');
+            btn.textContent = '📋 Copiar prompt';
+          }, 2000);
+        }
+      } catch(e) {
+        alert('Texto del prompt:\n\n' + text);
+      }
+    });
+  })(i);
 }
 </script>
 </body>
